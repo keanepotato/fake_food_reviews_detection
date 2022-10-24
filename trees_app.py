@@ -49,10 +49,10 @@ def text_process(review):
 
 ### IMPORT TF-IDF RANDOM FOREST MODEL WITH GRIDSEARCH
 print("Running prototype")
-loaded_pipeline = joblib.load(r"C:\Users\65932\OneDrive\Desktop\UIT2201\Fake-Reviews-Detection\trained_fake_review_detector.pkl")
-# print(loaded_pipeline)
-# iter_test = ["Hello World", "hello World", "world hello"]
-# print(loaded_pipeline.predict(iter_test)[0])
+
+# Load pipeline containing the model, must input the model path here
+loaded_pipeline = joblib.load(r"C:\Users\65932\OneDrive\Desktop\UIT2201\fake_food_reviews_detection\RF_fake_review_detector_gs.pkl")
+
 
 ###DEFINE ML FUNCTION
 def classify_review(first, second, third):
@@ -84,9 +84,9 @@ if initialise_gradio:
     ### TEST EXAMPLES
     set_two_first_eg = "Can't miss stop for the best Fish Sandwich in Pittsburgh."
     set_two_second_eg = "Good fish sandwich." 
-    set_two_third_eg =  "Let there be no question: Alexions owns the best cheeseburger in the region and they have now for decades. Try a burger on Italian bread. The service is flawlessly friendly, the food is amazing, and the wings? Oh the wings... but it's still about the cheeseburger. The atmosphere is inviting, but you can't eat atmosphere... so go right now. Grab the car keys... you know you're hungry for an amazing cheeseburger, maybe some wings, and a cold beer! Easily, hands down, the best bar and grill in Pittsburgh." 
+    set_two_third_eg =  "Replacing YOLO Cafe, Toast has an eclectic blend of loose leaf teas & coffee, delicious 'egg toasts' (poached eggs on top of homemade english muffins), sandwiches and other homemade goodies. *Try the egg toast with warm apples, white cheddar cheese, sausage and dijonnaise! AMAZING. I'm so impressed by their revamping of this place, the interior is cozy, clean and perfect for brunch with friends or studying on a Thursday afternoon. The baristas are helpful, friendly and warm. I will be coming here on a weekly basis. Cheers to Toast!" 
     
-    set_three_first_eg = "What a find! I stopped in here for breakfast while in town for business. The service is so friendly I thought I was down south. The service was quick, frankly and felt like I was with family. \nFantastic poached eggs, Cajun homefries and crispy bacon. Gab and Eat is definitely a place I world recommend to locals. I was stuffed and the bill was only $8.00." 
+    set_three_first_eg = "Toast is ok. My goat cheese, tomato and spinach omelet was actually pretty good and the coffee was pretty good too. I had the hummus plate and the hummus was pretty good. But it's kind of expensive and although it's pretty good it's not great. Which is the whole thing. It's fine. There's nothing wrong with it but it's just not exciting in any way. I was kind of pissed that they wouldn't make my kid a plain omelette though when clearly they are capable of doing so. Weird. Nice space." 
     set_three_second_eg = "Great little place. Treats you like a local.Eaten here 3 times a week for a month. Same overtime. Barb is always here." 
     set_three_third_eg = "Tonya is super sweet and the front desk people are very helpful" 
 
@@ -94,7 +94,7 @@ if initialise_gradio:
     iface = gr.Interface(fn = classify_review, 
                         inputs = [txt_1, txt_2, txt_3], 
                         outputs = 'label', 
-                        title = 'Fake Review Detection',
+                        title = 'Fake Review Detection via TF-IDF & Random Forests',
                         description = 'Input any text that you believe to be fake, this will return an output',
                         article = 
                             '''<div>
